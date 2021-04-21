@@ -37,6 +37,7 @@ public class EasyLevel {
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
+					int s = 5;
 				}
 			}
 		});
