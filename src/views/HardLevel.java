@@ -270,13 +270,17 @@ public class HardLevel {
 				{
 					if(arr[i] != result[i])
 					{
-						Over o = new Over();
+						Over o = new Over("hard");
 						o.frame.setVisible(true);
+						frame.setVisible(false);
+						break;
 		
 					}
-					else {
+					else if (i == arr.length - 1 && arr[i] == result[i]) {
 						Winnner w = new Winnner();
 						w.frame.setVisible(true);
+						frame.setVisible(false);
+						break;
 					}
 					
 				}}

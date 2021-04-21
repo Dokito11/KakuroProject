@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 public class Over {
+	private String diff;
 
 	public JFrame frame;
 
@@ -23,7 +24,7 @@ public class Over {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Over window = new Over();
+					Over window = new Over("easy");
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,8 +36,9 @@ public class Over {
 	/**
 	 * Create the application.
 	 */
-	public Over() {
+	public Over(String diff) {
 		initialize();
+		this.diff = diff;
 	}
 
 	/**
@@ -80,9 +82,21 @@ public class Over {
 		JButton btn_PlayAgain = new JButton("Play Again");
 		btn_PlayAgain.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EasyLevel es = new EasyLevel();
+				
+				
+				if (diff == "easy")
+				{
+					EasyLevel level = new EasyLevel();
+					level.frame.setVisible(true);
+				}
+				else
+				{
+					HardLevel level = new HardLevel();
+					level.frame.setVisible(true);
+				}
+				
 				frame.dispose();
-				es.frame.setVisible(true);	
+					
 				}
 		});
 		btn_PlayAgain.setForeground(Color.WHITE);
