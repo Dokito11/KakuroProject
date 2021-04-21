@@ -105,9 +105,7 @@ public class Help {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Menu m = new Menu();
 				frame.dispose();
-				m.frame.setVisible(true);
 				
 			}
 		});
