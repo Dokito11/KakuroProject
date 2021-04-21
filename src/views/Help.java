@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
+
+import classes.Account;
+
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -14,6 +17,8 @@ import java.awt.Color;
 
 public class Help {
 
+	private Account account;
+	
 	JFrame frame;
 
 	/**
@@ -23,7 +28,7 @@ public class Help {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Help window = new Help();
+					Help window = new Help(new Account("Test", "Test"));
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,14 +40,15 @@ public class Help {
 	/**
 	 * Create the application.
 	 */
-	public Help() {
-		initialize();
+	public Help(Account account) {
+		initialize(account);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Account account) {
+		this.account = account;
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 712, 501);
@@ -100,7 +106,7 @@ public class Help {
 		lblNewLabel_1.setIcon(icon);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Close");
+		JButton btnNewButton = new JButton("Return To Main Menu");
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {

@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import classes.Account;
 import views.Menu;
 
 import javax.swing.JPasswordField;
@@ -14,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import java.util.HashMap;
 
 public class Login_S {
 
@@ -48,6 +50,23 @@ public class Login_S {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		// Creation of Placeholder Accounts
+		Account acc1 = new Account("Admin", "Admin");
+		Account acc2 = new Account("Alex", "123");
+		Account acc3 = new Account("Ravinderpal", "321");
+		Account acc4 = new Account("Obaydullah", "111");
+		Account acc5 = new Account("Junfeng ", "222");
+		
+		HashMap<String, String> accounts = new HashMap<String, String>();
+		accounts.put(acc1.getAccountName(), acc1.getAccountPassword());
+		accounts.put(acc2.getAccountName(), acc2.getAccountPassword());
+		accounts.put(acc3.getAccountName(), acc3.getAccountPassword());
+		accounts.put(acc4.getAccountName(), acc4.getAccountPassword());
+		accounts.put(acc5.getAccountName(), acc5.getAccountPassword());
+		
+		
+		
 		frame = new JFrame();
 		frame.setBounds(200, 200, 500, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,14 +97,12 @@ public class Login_S {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String password = txtPassword.getText();
-				String username = txtUsername.getText();
-				
-				if (password.contains("123") && username.contains("admin")){
-					Menu m = new Menu();
+				Account acc = new Account(txtUsername.getText(), txtPassword.getText());				
+
+				if (acc.Login(accounts)){
+					Menu m = new Menu(acc);
 					frame.dispose();
 					m.frame.setVisible(true);
-				
 				}
 				else
 				{
@@ -98,11 +115,20 @@ public class Login_S {
 		btnLogin.setBounds(32, 213, 89, 23);
 		frame.getContentPane().add(btnLogin);
 		
-		JButton btnReset = new JButton("Reset");
+		JButton btnReset = new JButton("Create");
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				txtUsername.setText(null);
-				txtPassword.setText(null);
+				Account acc = new Account(txtUsername.getText(), txtPassword.getText());				
+
+				if (acc.CreateAccount(accounts)){
+					JOptionPane.showMessageDialog(null, "Account Created Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+				}
+				else
+				{
+					JOptionPane.showMessageDialog(null, "Account Name is already Taken, please choose another.", "Account Creation Error", JOptionPane.ERROR_MESSAGE);
+					txtPassword.setText(null);
+					txtUsername.setText(null);
+				}
 			}
 		});
 		btnReset.setBounds(168, 213, 89, 23);

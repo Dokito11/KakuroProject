@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import classes.Account;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,6 +19,8 @@ import java.awt.event.KeyEvent;
 
 public class HardLevel {
 
+	private Account account;
+	
 	public JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -42,7 +47,7 @@ public class HardLevel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HardLevel window = new HardLevel();
+					HardLevel window = new HardLevel(new Account("Test", "Test"));
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,14 +59,15 @@ public class HardLevel {
 	/**
 	 * Create the application.
 	 */
-	public HardLevel() {
-		initialize();
+	public HardLevel(Account account) {
+		initialize(account);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Account account) {
+		this.account = account;
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Dialog", Font.PLAIN, 14));
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -368,14 +374,14 @@ public class HardLevel {
 				{
 					if(arr[i] != result[i])
 					{
-						Over o = new Over("hard");
+						Over o = new Over(account, "hard");
 						o.frame.setVisible(true);
 						frame.setVisible(false);
 						break;
 		
 					}
 					else if (i == arr.length - 1 && arr[i] == result[i]) {
-						Winnner w = new Winnner();
+						Winnner w = new Winnner(account);
 						w.frame.setVisible(true);
 						frame.setVisible(false);
 						break;
@@ -391,7 +397,8 @@ public class HardLevel {
 		btn_Help = new JButton("Need Help?");
 		btn_Help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Help h = new Help();
+				Help h = new Help(account);
+				frame.dispose();
 				h.frame.setVisible(true);
 			}
 		});

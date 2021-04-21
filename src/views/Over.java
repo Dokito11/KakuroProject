@@ -12,7 +12,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+import classes.Account;
+
 public class Over {
+	
+	private Account account;
 	private String diff;
 
 	public JFrame frame;
@@ -24,7 +28,7 @@ public class Over {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Over window = new Over("easy");
+					Over window = new Over(new Account("Test", "Test"), "easy");
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,15 +40,16 @@ public class Over {
 	/**
 	 * Create the application.
 	 */
-	public Over(String diff) {
-		initialize();
-		this.diff = diff;
+	public Over(Account account, String diff) {
+		initialize(account, diff);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Account account, String diff) {
+		this.account = account;
+		this.diff = diff;
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.getContentPane().setForeground(Color.WHITE);
@@ -57,7 +62,7 @@ public class Over {
 		btnMenu.setForeground(Color.WHITE);
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Menu m = new Menu();
+				Menu m = new Menu(account);
 				frame.dispose();
 				m.frame.setVisible(true);
 				
@@ -86,12 +91,12 @@ public class Over {
 				
 				if (diff == "easy")
 				{
-					EasyLevel level = new EasyLevel();
+					EasyLevel level = new EasyLevel(account);
 					level.frame.setVisible(true);
 				}
 				else
 				{
-					HardLevel level = new HardLevel();
+					HardLevel level = new HardLevel(account);
 					level.frame.setVisible(true);
 				}
 				

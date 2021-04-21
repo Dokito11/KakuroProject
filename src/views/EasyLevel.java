@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import classes.Account;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -15,6 +18,8 @@ import java.awt.event.KeyEvent;
 
 public class EasyLevel {
 
+	private Account account;
+	
 	public JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -28,7 +33,7 @@ public class EasyLevel {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EasyLevel window = new EasyLevel();
+					EasyLevel window = new EasyLevel(new Account("Test", "Test"));
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,14 +45,15 @@ public class EasyLevel {
 	/**
 	 * Create the application.
 	 */
-	public EasyLevel() {
-		initialize();
+	public EasyLevel(Account account) {
+		initialize(account);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Account account) {
+		this.account = account;
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 416, 405);
@@ -204,14 +210,14 @@ public class EasyLevel {
 				{
 					if(arr[i] != result[i])
 					{
-						Over o = new Over("easy");
+						Over o = new Over(account, "easy");
 						o.frame.setVisible(true);
 						frame.setVisible(false);
 						break;
 		
 					}
 					else if (i == arr.length - 1 && arr[i] == result[i]) {
-						Winnner w = new Winnner();
+						Winnner w = new Winnner(account);
 						w.frame.setVisible(true);
 						frame.setVisible(false);
 						break;
@@ -229,7 +235,7 @@ public class EasyLevel {
 		JButton btn_Help = new JButton("Need help?");
 		btn_Help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			Help h = new Help();
+			Help h = new Help(account);
 			h.frame.setVisible(true);
 			}
 		});
