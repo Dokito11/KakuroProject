@@ -392,7 +392,6 @@ public class HardLevel {
 		btn_Help.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Help h = new Help();
-				frame.dispose();
 				h.frame.setVisible(true);
 			}
 		});

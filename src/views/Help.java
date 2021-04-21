@@ -100,7 +100,7 @@ public class Help {
 		lblNewLabel_1.setIcon(icon);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Return To Main Menu");
+		JButton btnNewButton = new JButton("Close");
 		btnNewButton.setBackground(Color.BLACK);
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
