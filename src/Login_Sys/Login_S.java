@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import views.Menu;
+
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -79,8 +82,9 @@ public class Login_S {
 				String username = txtUsername.getText();
 				
 				if (password.contains("123") && username.contains("admin")){
-					txtPassword.setText(null);
-					txtUsername.setText(null);
+					Menu m = new Menu();
+					frame.dispose();
+					m.frame.setVisible(true);
 				
 				}
 				else
@@ -108,7 +112,7 @@ public class Login_S {
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				frmLoginSystem = new JFrame("Exit");
+				JFrame frmLoginSystem = new JFrame("Exit");
 				if (JOptionPane.showConfirmDialog(frmLoginSystem, "Confirm if you want to exit", "Login Systems",
 				JOptionPane.YES_NO_OPTION)== JOptionPane.YES_NO_OPTION) {
 				System.exit(0);
