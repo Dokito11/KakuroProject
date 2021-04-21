@@ -58,12 +58,26 @@ public class EasyLevel {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField.setText("");
+					return;
 				}
 			}
 		});
+		
+		
+		
 		textField.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		textField.setBounds(178, 109, 52, 46);
 		frame.getContentPane().add(textField);
@@ -74,8 +88,19 @@ public class EasyLevel {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_1.setText("");
+					return;
 				}
 			}
 		});
@@ -89,8 +114,19 @@ public class EasyLevel {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_2.setText("");
+					return;
 				}
 			}
 		});
@@ -103,9 +139,20 @@ public class EasyLevel {
 		textField_3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_3.setText("");
+					return;
 				}
 			}
 		});

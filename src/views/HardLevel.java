@@ -74,10 +74,20 @@ public class HardLevel {
 		textField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
 				
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField.setText("");
+					return;
 				}
 			}
 		});
@@ -90,9 +100,20 @@ public class HardLevel {
 		textField_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_1.setText("");
+					return;
 				}
 			}
 		});
@@ -105,9 +126,20 @@ public class HardLevel {
 		textField_2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_2.setText("");
+					return;
 				}
 			}
 		});
@@ -120,9 +152,20 @@ public class HardLevel {
 		textField_3.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_3.setText("");
+					return;
 				}
 			}
 		});
@@ -135,9 +178,20 @@ public class HardLevel {
 		textField_4.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_4.setText("");
+					return;
 				}
 			}
 		});
@@ -150,9 +204,20 @@ public class HardLevel {
 		textField_5.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_5.setText("");
+					return;
 				}
 			}
 		});
@@ -165,9 +230,20 @@ public class HardLevel {
 		textField_6.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_6.setText("");
+					return;
 				}
 			}
 		});
@@ -180,9 +256,20 @@ public class HardLevel {
 		textField_7.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_7.setText("");
+					return;
 				}
 			}
 		});
@@ -195,9 +282,20 @@ public class HardLevel {
 		textField_8.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				if(!(Character.isDigit(c)||(c==KeyEvent.VK_BACK_SPACE)||c==KeyEvent.VK_DELETE)) {
+				char c = e.getKeyChar();
+				
+				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
+				{
+					return;
+				}
+				
+				if(!Character.isDigit(c)) {
 					e.consume();
+				}
+				else
+				{
+					textField_8.setText("");
+					return;
 				}
 			}
 			
