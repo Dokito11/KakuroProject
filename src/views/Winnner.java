@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
+import classes.Account;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -12,6 +15,8 @@ import java.awt.Color;
 
 public class Winnner {
 
+	private Account account;
+	
 	public JFrame frame;
 
 	/**
@@ -21,7 +26,7 @@ public class Winnner {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Winnner window = new Winnner();
+					Winnner window = new Winnner(new Account("Test", "Test"));
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,14 +38,15 @@ public class Winnner {
 	/**
 	 * Create the application.
 	 */
-	public Winnner() {
-		initialize();
+	public Winnner(Account account) {
+		initialize(account);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Account account) {
+		this.account = account;
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
 		frame.setBounds(100, 100, 450, 300);
@@ -58,7 +64,7 @@ public class Winnner {
 		btnMenu.setForeground(Color.WHITE);
 		btnMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Menu m = new Menu();
+				Menu m = new Menu(account);
 				frame.dispose();
 				m.frame.setVisible(true);
 			}
