@@ -5,7 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
-import classes.Account;
+import Model.Account;
 
 import java.awt.Font;
 import javax.swing.JLabel;

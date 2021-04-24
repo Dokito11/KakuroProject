@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-import classes.Account;
+import Model.Account;
 
 import java.awt.Font;
 import java.awt.Color;

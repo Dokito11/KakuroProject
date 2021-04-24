@@ -4,7 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import classes.Account;
+import Model.Account;
+import Model.Game;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -13,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class EasyLevel {
 
@@ -27,7 +26,7 @@ public class EasyLevel {
 	private JTextField textField_3;
 
 	/**
-	 * Launch the application.
+	 * Launch the application (Testing Purposes).
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -62,111 +61,13 @@ public class EasyLevel {
 		frame.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				
-				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
-				{
-					return;
-				}
-				
-				if(!Character.isDigit(c)) {
-					e.consume();
-				}
-				else
-				{
-					textField.setText("");
-					return;
-				}
-			}
-		});
-		
-		
-		
-		textField.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		textField.setBounds(178, 109, 52, 46);
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
-		
+		Game.InitTextfield(frame, textField, 178, 109, 52, 46);
 		textField_1 = new JTextField();
-		textField_1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				
-				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
-				{
-					return;
-				}
-				
-				if(!Character.isDigit(c)) {
-					e.consume();
-				}
-				else
-				{
-					textField_1.setText("");
-					return;
-				}
-			}
-		});
-		textField_1.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		textField_1.setColumns(10);
-		textField_1.setBounds(230, 109, 52, 46);
-		frame.getContentPane().add(textField_1);
-		
+		Game.InitTextfield(frame, textField_1, 230, 109, 52, 46);
 		textField_2 = new JTextField();
-		textField_2.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c=e.getKeyChar();
-				
-				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
-				{
-					return;
-				}
-				
-				if(!Character.isDigit(c)) {
-					e.consume();
-				}
-				else
-				{
-					textField_2.setText("");
-					return;
-				}
-			}
-		});
-		textField_2.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		textField_2.setColumns(10);
-		textField_2.setBounds(178, 156, 52, 46);
-		frame.getContentPane().add(textField_2);
-		
+		Game.InitTextfield(frame, textField_2, 178, 156, 52, 46);
 		textField_3 = new JTextField();
-		textField_3.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				char c = e.getKeyChar();
-				
-				if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
-				{
-					return;
-				}
-				
-				if(!Character.isDigit(c)) {
-					e.consume();
-				}
-				else
-				{
-					textField_3.setText("");
-					return;
-				}
-			}
-		});
-		textField_3.setFont(new Font("Arial Black", Font.PLAIN, 12));
-		textField_3.setColumns(10);
-		textField_3.setBounds(230, 156, 52, 46);
-		frame.getContentPane().add(textField_3);
+		Game.InitTextfield(frame, textField_3, 230, 156, 52, 46);
 		
 		JLabel lblNewLabel = new JLabel("17");
 		lblNewLabel.setForeground(Color.WHITE);
