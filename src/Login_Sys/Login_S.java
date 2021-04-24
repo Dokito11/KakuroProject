@@ -7,7 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import classes.Account;
+import Model.Account;
 import views.Menu;
 
 import javax.swing.JPasswordField;

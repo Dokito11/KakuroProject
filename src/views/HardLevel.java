@@ -7,15 +7,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import classes.*;
+import Model.Account;
+import Model.Game;
+
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class HardLevel {
 
@@ -94,7 +94,6 @@ public class HardLevel {
 		Game.InitTextfield(frame, textField_7, 256, 202, 60, 49);
 		textField_8 = new JTextField();
 		Game.InitTextfield(frame, textField_8, 315, 202, 65, 49);
-		
 		
 		JLabel lblNewLabel = new JLabel("24");
 		lblNewLabel.setForeground(Color.WHITE);
@@ -234,7 +233,4 @@ public class HardLevel {
 		lbl_Title_1_1_1_2.setBounds(89, 11, 102, 34);
 		frame.getContentPane().add(lbl_Title_1_1_1_2);
 	}
-	
-	
-
 }

@@ -1,4 +1,4 @@
-package classes;
+package Model;
 
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
@@ -9,27 +9,21 @@ import javax.swing.JTextField;
 
 public class Game {
 
+	// Checks Input - Only allows digits or delete button and replaces current number with new one
 	public static void input(KeyEvent e, JTextField txtField)
 	{
-		
 		char c = e.getKeyChar();
 		
 		if(c==KeyEvent.VK_BACK_SPACE||c==KeyEvent.VK_DELETE)
-		{
-			return;
-		}
+		{ return; }
 		
-		if(!Character.isDigit(c)) {
-			e.consume();
-		}
+		if(!Character.isDigit(c)) 
+		{ e.consume(); }
 		else
-		{
-			txtField.setText("");
-			return;
-		}
-		
+		{ txtField.setText(""); return; }
 	}
 	
+	// Initializes Textfields
 	public static void InitTextfield(JFrame frame, JTextField txtField, int x, int y, int width, int height)
 	{
 		txtField.setFont(new Font("Arial Black", Font.BOLD, 14));
