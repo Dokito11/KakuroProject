@@ -13,6 +13,7 @@ import Model.Game;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
@@ -68,6 +69,34 @@ public class HardLevel {
 	 */
 	private void initialize(Account account) {
 		this.account = account;
+		
+		String[][] levelNumbers = {
+				{"22","21","7","20", "19","11"},
+				{"23","17","7","20","18","9"},
+				{"23","11","7","20","12","9"},
+				{"20","16","7","21","15","7"},
+				{"20","19","7","20","19","7"},
+				{"20","12","10","24","11","7"},
+				{"23","10","7","19","11","10"},
+				{"23","20","7","20","18","12"},
+				{"19","12","10","23","11","7"},
+		};
+		
+		int[][] levelSolutions = {
+				{7,9,4,9,8,2,6,4,1},
+				{9,7,4,8,9,1,6,1,2},
+				{9,7,4,9,3,1,6,1,2},
+				{9,8,4,7,6,2,4,2,1},
+				{7,9,4,9,8,2,4,2,1},
+				{9,8,7,7,3,1,4,1,2},
+				{9,6,4,8,1,2,6,3,1},
+				{9,7,4,8,9,1,6,4,2},
+				{8,9,6,7,1,3,4,2,1},
+		};
+		
+		Random rand = new Random();
+		int int_rand = rand.nextInt(9);
+		
 		frame = new JFrame();
 		frame.getContentPane().setFont(new Font("Dialog", Font.PLAIN, 14));
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -95,37 +124,37 @@ public class HardLevel {
 		textField_8 = new JTextField();
 		Game.InitTextfield(frame, textField_8, 315, 202, 65, 49);
 		
-		JLabel lblNewLabel = new JLabel("24");
+		JLabel lblNewLabel = new JLabel(levelNumbers[int_rand][0]);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblNewLabel.setBounds(166, 104, 28, 35);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("15");
+		JLabel lblNewLabel_1 = new JLabel(levelNumbers[int_rand][1]);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(166, 142, 28, 49);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("7");
+		JLabel lblNewLabel_1_1 = new JLabel(levelNumbers[int_rand][2]);
 		lblNewLabel_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblNewLabel_1_1.setBounds(176, 191, 19, 49);
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("20");
+		JLabel lblNewLabel_1_1_1 = new JLabel(levelNumbers[int_rand][3]);
 		lblNewLabel_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblNewLabel_1_1_1.setBounds(195, 71, 45, 35);
 		frame.getContentPane().add(lblNewLabel_1_1_1);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("16");
+		JLabel lblNewLabel_1_1_1_1 = new JLabel(levelNumbers[int_rand][4]);
 		lblNewLabel_1_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblNewLabel_1_1_1_1.setBounds(256, 71, 45, 35);
 		frame.getContentPane().add(lblNewLabel_1_1_1_1);
 		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("10");
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel(levelNumbers[int_rand][5]);
 		lblNewLabel_1_1_1_1_1.setForeground(Color.WHITE);
 		lblNewLabel_1_1_1_1_1.setFont(new Font("Arial Black", Font.BOLD, 14));
 		lblNewLabel_1_1_1_1_1.setBounds(312, 69, 45, 37);
@@ -153,7 +182,7 @@ public class HardLevel {
 					
 				};	
 				
-				int[] result = {9,8,7,7,6,2,4,2,1};
+				int[] result = levelSolutions[int_rand];
 				for(int i = 0 ; i<arr.length ; i++)
 				{
 					if(arr[i] != result[i])
