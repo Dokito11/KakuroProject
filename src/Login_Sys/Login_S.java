@@ -42,37 +42,11 @@ public class Login_S {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
 	public Login_S() throws ClassNotFoundException, SQLException {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
 	private void initialize() throws ClassNotFoundException, SQLException {
-		
-		// Creation of Placeholder Accounts
-//		Account acc1 = new Account("Admin", "Admin");
-//		Account acc2 = new Account("Alex", "123");
-//		Account acc3 = new Account("Ravinderpal", "321");
-//		Account acc4 = new Account("Obaydullah", "111");
-//		Account acc5 = new Account("Junfeng ", "222");
-//		
-//		HashMap<String, String> accounts = new HashMap<String, String>();
-//		accounts.put(acc1.getAccountName(), acc1.getAccountPassword());
-//		accounts.put(acc2.getAccountName(), acc2.getAccountPassword());
-//		accounts.put(acc3.getAccountName(), acc3.getAccountPassword());
-//		accounts.put(acc4.getAccountName(), acc4.getAccountPassword());
-//		accounts.put(acc5.getAccountName(), acc5.getAccountPassword());
-		
-		
 		
 		frame = new JFrame();
 		frame.setBounds(200, 200, 500, 300);
