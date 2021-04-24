@@ -17,24 +17,4 @@ public class Account {
 		this.accountName = accName;
 		this.accountPass = accPassword;
 	}
-	
-	public Boolean Login(HashMap<String,String> accList)
-	{
-		if (accList.containsKey(this.accountName) && accList.get(this.accountName).equals(this.accountPass))
-		{
-			return true;
-		}
-		return false;
-	}
-	
-	public Boolean CreateAccount(HashMap<String,String> accList)
-	{
-		if (accList.containsKey(this.accountName))
-		{
-			return false;
-		}
-		accList.put(this.accountName, this.accountPass);
-		return true;
-	}
-	
 }
