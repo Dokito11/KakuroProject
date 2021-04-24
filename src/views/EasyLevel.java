@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
+import java.util.Random;
+
 
 public class EasyLevel {
 
@@ -53,6 +55,34 @@ public class EasyLevel {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Account account) {
+		
+		String[][] levelNumbers = {
+				{"16","8","16","8"},
+				{"14","3","11","6"},
+				{"17","8","13","12"},
+				{"12","3","8","7"},
+				{"12","4","11","5"},
+				{"8","3","7","4"},
+				{"16","5","12","9"},
+				{"14","8","12","10"},
+				{"15","3","11","7"},
+		};
+		
+		int[][] levelSolutions = {
+				{9,7,7,1},
+				{9,5,2,1},
+				{8,9,5,3},
+				{7,5,1,2},
+				{8,4,3,1},
+				{5,3,2,1},
+				{9,7,3,2},
+				{5,9,7,1},
+				{9,6,2,1},
+		};
+		
+		Random rand = new Random();
+		int int_rand = rand.nextInt(9);
+		
 		this.account = account;
 		frame = new JFrame();
 		frame.getContentPane().setBackground(Color.BLACK);
@@ -69,25 +99,25 @@ public class EasyLevel {
 		textField_3 = new JTextField();
 		Game.InitTextfield(frame, textField_3, 230, 156, 52, 46);
 		
-		JLabel lblNewLabel = new JLabel("17");
+		JLabel lblNewLabel = new JLabel(levelNumbers[int_rand][0]);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblNewLabel.setBounds(150, 109, 28, 34);
 		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("12");
+		JLabel lblNewLabel_1 = new JLabel(levelNumbers[int_rand][1]);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblNewLabel_1.setBounds(150, 156, 28, 34);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("15");
+		JLabel lblNewLabel_2 = new JLabel(levelNumbers[int_rand][2]);
 		lblNewLabel_2.setForeground(Color.WHITE);
 		lblNewLabel_2.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblNewLabel_2.setBounds(185, 81, 45, 26);
 		frame.getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("14");
+		JLabel lblNewLabel_2_1 = new JLabel(levelNumbers[int_rand][3]);
 		lblNewLabel_2_1.setForeground(Color.WHITE);
 		lblNewLabel_2_1.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lblNewLabel_2_1.setBounds(234, 77, 34, 34);
@@ -107,7 +137,7 @@ public class EasyLevel {
 						Integer.parseInt( textField_3.getText())};
 				
 				
-				int[] result = {8,9,7,5};
+				int[] result = levelSolutions[int_rand];
 				for(int i = 0 ; i<arr.length ; i++)
 				{
 					if(arr[i] != result[i])
