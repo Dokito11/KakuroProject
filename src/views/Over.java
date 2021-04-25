@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
@@ -91,13 +92,31 @@ public class Over {
 				
 				if (diff == "easy")
 				{
-					EasyLevel level = new EasyLevel(account);
-					level.frame.setVisible(true);
+					EasyLevel level;
+					try {
+						level = new EasyLevel(account);
+						level.frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				else
 				{
-					HardLevel level = new HardLevel(account);
-					level.frame.setVisible(true);
+					HardLevel level;
+					try {
+						level = new HardLevel(account);
+						level.frame.setVisible(true);
+					} catch (ClassNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 				
 				frame.dispose();

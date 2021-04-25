@@ -21,11 +21,12 @@ public class DBConnection {
 		}
 		
 		Statement state = con.createStatement();
-		ResultSet res = state.executeQuery("SELECT Account_Name, Password FROM Accounts WHERE Account_Name = '" + acc.getAccountName() + "' "
+		ResultSet res = state.executeQuery("SELECT ID, Account_Name, Password FROM Accounts WHERE Account_Name = '" + acc.getAccountName() + "' "
 				+ "AND Password = '" + acc.getAccountPassword() +"';");
 		
 		if(res.next())
 		{
+			System.out.println(res.getString("ID") + " - " + res.getString("Account_Name") + " : " + res.getString("Password")); // DELETE ME
 			return true;
 		}
 		return false;
@@ -47,12 +48,84 @@ public class DBConnection {
 		}
 		else
 		{
-			PreparedStatement prep = con.prepareStatement("INSERT INTO Accounts values(?,?,?)");
-			prep.setString(2, acc.getAccountName());
-			prep.setString(3, acc.getAccountPassword());
+			PreparedStatement prep = con.prepareStatement("INSERT INTO Accounts(Account_Name, Password) values(?,?)");
+			prep.setString(1, acc.getAccountName());
+			prep.setString(2, acc.getAccountPassword());
 			prep.execute();
 			return true;
 		}
+	}
+	
+	public static Integer getHighscore(Account acc, Integer level) throws ClassNotFoundException, SQLException
+	{
+		if (con == null)
+		{
+			getConnection();
+		}
+		
+		Statement state = con.createStatement();
+		ResultSet res = state.executeQuery("SELECT Highscore FROM Highscores WHERE Account_ID in (SELECT ID FROM Accounts WHERE Account_Name = '" + acc.getAccountName() + "')"
+				+ "AND Level_ID = " + level + ";");
+		if (res.next())
+		{
+			return res.getInt("Highscore");
+		}
+		return 0;
+	}
+	
+	public static boolean setHighscore(Account acc, Integer level, Integer score) throws ClassNotFoundException, SQLException
+	{
+		if (con == null)
+		{
+			getConnection();
+		}
+		
+		Statement state = con.createStatement();
+		ResultSet res = state.executeQuery("SELECT Highscore FROM Highscores WHERE Account_ID in (SELECT ID FROM Accounts WHERE Account_Name = '" + acc.getAccountName() + "')"
+				+ "AND Level_ID = " + level + " AND Highscore > " + score.toString() + ";");
+		
+		if (res.next())
+		{
+			return false;
+		}
+		else
+		{
+			PreparedStatement prep = con.prepareStatement("INSERT INTO Highscores(Account_ID, Level_ID, Highscore) values(?,?,?)");
+			prep.setString(1, getAccountID(acc));
+			prep.setInt(2, level);
+			prep.setInt(3, score);
+			prep.execute();
+			return true;
+		}
+	}
+	
+	public static Integer getHighestScore(Integer level) throws ClassNotFoundException, SQLException
+	{
+		if (con == null)
+		{
+			getConnection();
+		}
+		
+		Statement state = con.createStatement();
+		ResultSet res = state.executeQuery("SELECT Highscore FROM Highscores where Level_ID = " + level + " ORDER BY Highscore DESC LIMIT 1;");
+		if (res.next())
+		{
+			return res.getInt("Highscore");
+		}
+		return 0;
+	}
+	
+	private static String getAccountID(Account acc) throws SQLException, ClassNotFoundException
+	{
+		if (con == null)
+		{
+			getConnection();
+		}
+		
+		Statement state = con.createStatement();
+		ResultSet res = state.executeQuery("SELECT ID FROM Accounts where Account_Name = '" + acc.getAccountName() + "';");
+		
+		return res.getString("ID");
 	}
 	
 	public static void getConnection() throws ClassNotFoundException, SQLException
@@ -74,21 +147,12 @@ public class DBConnection {
 				System.out.println("Building the Account Table");
 				
 				Statement state2 = con.createStatement();
-				state2.execute("CREATE TABLE Accounts(Account_ID integer,"
-						+ "Account_Name nvarchar(25), Password nvarchar(25),"
-						+ "primary key(Account_ID));");
+				state2.execute("CREATE TABLE Accounts(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
+						+ "Account_Name nvarchar(25), Password nvarchar(25));");
 				
 				Statement state3 = con.createStatement();
-				state3.execute("CREATE TABLE Levels(Level_ID integer, Level_Difficulty integer, " +
-						"Label_1 integer, Label_2 integer, Label_3 integer, Label_4 integer, " +
-						"Label_5 integer, Label_6 integer, Grid_1 integer, Grid_2 integer, " +
-						"Grid_3 integer, Grid_4 integer, Grid_5 integer, Grid_6 integer, " +
-						"Grid_7 integer, Grid_8 integer, Grid_9 integer, primary key(Level_ID));");
-				
-				Statement state4 = con.createStatement();
-				state4.execute("CREATE TABLE Highscores(ID integer, Account_ID integer, Level_ID integer, Highscore integer,"
-						+ "primary key(ID), foreign key(Account_ID) references Accounts(Account_ID),"
-						+ "foreign key(Level_ID) references Levels(Level_ID));");
+				state3.execute("CREATE TABLE Highscores(ID INTEGER PRIMARY KEY AUTOINCREMENT, Account_ID integer, Level_ID integer, Highscore integer,"
+						+ "foreign key(Account_ID) references Accounts(ID));");
 				
 			}
 		}

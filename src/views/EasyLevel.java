@@ -5,16 +5,20 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import Model.Account;
+import Model.DBConnection;
 import Model.Game;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class EasyLevel {
@@ -26,6 +30,9 @@ public class EasyLevel {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JLabel lbl_Score;
+	
+	private Integer score = 600;
 
 	/**
 	 * Launch the application (Testing Purposes).
@@ -46,15 +53,31 @@ public class EasyLevel {
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public EasyLevel(Account account) {
+	public EasyLevel(Account account) throws ClassNotFoundException, SQLException{
 		initialize(account);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	private void initialize(Account account) {
+	private void initialize(Account account) throws ClassNotFoundException, SQLException {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				score--;
+				lbl_Score.setText("Score: " + score);
+			}
+		};
+		
+		timer.scheduleAtFixedRate(task, 1000, 1000);
 		
 		String[][] levelNumbers = {
 				{"16","8","16","8"},
@@ -150,6 +173,13 @@ public class EasyLevel {
 					}
 					else if (i == arr.length - 1 && arr[i] == result[i]) {
 						Winnner w = new Winnner(account);
+						try {
+							DBConnection.setHighscore(account, 1, score);
+						} catch (ClassNotFoundException e1) {
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							e1.printStackTrace();
+						}
 						w.frame.setVisible(true);
 						frame.setVisible(false);
 						break;
@@ -218,5 +248,23 @@ public class EasyLevel {
 		lbl_Title_1_1_1_1_2.setFont(new Font("Arial Black", Font.PLAIN, 12));
 		lbl_Title_1_1_1_1_2.setBounds(155, 11, 99, 34);
 		frame.getContentPane().add(lbl_Title_1_1_1_1_2);
+		
+		lbl_Score = new JLabel("SCORE: 600");
+		lbl_Score.setForeground(Color.WHITE);
+		lbl_Score.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_Score.setBounds(165, 26, 99, 34);
+		frame.getContentPane().add(lbl_Score);
+		
+		JLabel lbl_HighScore = new JLabel("Your Highscore: " + DBConnection.getHighscore(account, 1));
+		lbl_HighScore.setForeground(Color.WHITE);
+		lbl_HighScore.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_HighScore.setBounds(250, 26, 199, 34);
+		frame.getContentPane().add(lbl_HighScore);
+		
+		JLabel lbl_HighestScore = new JLabel("Highest Score: " + DBConnection.getHighestScore(1));
+		lbl_HighestScore.setForeground(Color.WHITE);
+		lbl_HighestScore.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_HighestScore.setBounds(250, 41, 199, 34);
+		frame.getContentPane().add(lbl_HighestScore);
 	}
 }
