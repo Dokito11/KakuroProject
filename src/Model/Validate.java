@@ -1,7 +1,5 @@
 package Model;
 
-import java.util.Arrays;
-
 public class Validate {
 
 	public static boolean isLevelFinished(int[] arr, int[] result)
