@@ -1,4 +1,4 @@
-package Login_Sys;
+package views;
 
 import java.awt.EventQueue;
 import java.awt.HeadlessException;
@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 
 import Model.Account;
 import Model.DBConnection;
-import views.Menu;
 
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -18,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
-import java.util.HashMap;
 
 public class Login_S {
 
