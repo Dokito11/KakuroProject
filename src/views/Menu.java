@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
@@ -59,9 +60,19 @@ public class Menu {
 		btnEasy.setBackground(Color.BLACK);
 		btnEasy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EasyLevel es = new EasyLevel(account);
-				frame.dispose();
-				es.frame.setVisible(true);
+				EasyLevel es;
+				try {
+					es = new EasyLevel(account);
+					frame.dispose();
+					es.frame.setVisible(true);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 		btnEasy.setBounds(24, 209, 133, 59);
@@ -73,9 +84,18 @@ public class Menu {
 		btnHard.setForeground(Color.WHITE);
 		btnHard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HardLevel hd = new HardLevel(account);
-				frame.dispose();
-				hd.frame.setVisible(true);
+				HardLevel hd;
+				try {
+					hd = new HardLevel(account);
+					frame.dispose();
+					hd.frame.setVisible(true);
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnHard.setBounds(209, 209, 133, 59);

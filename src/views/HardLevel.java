@@ -1,19 +1,21 @@
 package views;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Model.Account;
+import Model.DBConnection;
 import Model.Game;
-
+import Model.Validate;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.Color;
@@ -40,34 +42,28 @@ public class HardLevel {
 	private JLabel lbl_Title_1_1_1_1;
 	private JLabel lbl_Title_1_1_1_1_1;
 	private JLabel lbl_Title_1_1_1_2;
+	private JLabel lbl_Score;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HardLevel window = new HardLevel(new Account("Test", "Test"));
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public HardLevel(Account account) {
+	private Integer score = 800;
+	
+	public HardLevel(Account account) throws ClassNotFoundException, SQLException {
 		initialize(account);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(Account account) {
+	void initialize(Account account) throws ClassNotFoundException, SQLException {
+		Timer timer = new Timer();
+		TimerTask task = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				score--;
+				lbl_Score.setText("Score: " + score);
+			}
+		};
+		
+		timer.scheduleAtFixedRate(task, 1000, 1000);
+		
 		this.account = account;
 		
 		String[][] levelNumbers = {
@@ -79,7 +75,7 @@ public class HardLevel {
 				{"20","12","10","24","11","7"},
 				{"23","10","7","19","11","10"},
 				{"23","20","7","20","18","12"},
-				{"19","12","10","23","11","7"},
+				{"19","12","10","23","11","7"}
 		};
 		
 		int[][] levelSolutions = {
@@ -91,7 +87,7 @@ public class HardLevel {
 				{9,8,7,7,3,1,4,1,2},
 				{9,6,4,8,1,2,6,3,1},
 				{9,7,4,8,9,1,6,4,2},
-				{8,9,6,7,1,3,4,2,1},
+				{8,9,6,7,1,3,4,2,1}
 		};
 		
 		Random rand = new Random();
@@ -171,36 +167,37 @@ public class HardLevel {
 				}
 				else
 				{
-				int[] arr =  {Integer.parseInt( textField.getText()),Integer.parseInt( textField_1.getText()),Integer.parseInt( textField_2.getText()),
+				int[] arr =  {Integer.parseInt( textField.getText()),
 						Integer.parseInt( textField_3.getText()),
+						Integer.parseInt( textField_6.getText()),
+						Integer.parseInt( textField_1.getText()),
 						Integer.parseInt( textField_4.getText()),
-
-						Integer.parseInt( textField_5.getText())
-						,Integer.parseInt( textField_6.getText()),
 						Integer.parseInt( textField_7.getText()),
-						Integer.parseInt( textField_8.getText()),
-					
-				};	
+						Integer.parseInt( textField_2.getText()),
+						Integer.parseInt( textField_5.getText()),
+						Integer.parseInt( textField_8.getText())
+					};	
 				
 				int[] result = levelSolutions[int_rand];
-				for(int i = 0 ; i<arr.length ; i++)
+				if (Validate.isLevelFinished(arr, result))
 				{
-					if(arr[i] != result[i])
-					{
-						Over o = new Over(account, "hard");
-						o.frame.setVisible(true);
-						frame.setVisible(false);
-						break;
-		
+					Winnner w = new Winnner(account);
+					try {
+						DBConnection.setHighscore(account, 2, score);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
-					else if (i == arr.length - 1 && arr[i] == result[i]) {
-						Winnner w = new Winnner(account);
-						w.frame.setVisible(true);
-						frame.setVisible(false);
-						break;
-					}
-					
-				}}
+					w.frame.setVisible(true);
+				}
+				else 
+				{
+					Over o = new Over(account, "hard");
+					o.frame.setVisible(true);
+				}
+				frame.setVisible(false);
+				}
 			}
 		});
 		btnDone.setBounds(214, 262, 109, 35);
@@ -261,5 +258,23 @@ public class HardLevel {
 		lbl_Title_1_1_1_2.setFont(new Font("Arial Black", Font.PLAIN, 14));
 		lbl_Title_1_1_1_2.setBounds(89, 11, 102, 34);
 		frame.getContentPane().add(lbl_Title_1_1_1_2);
+		
+		lbl_Score = new JLabel("Score: 800");
+		lbl_Score.setForeground(Color.WHITE);
+		lbl_Score.setFont(new Font("Arial Black", Font.PLAIN, 14));
+		lbl_Score.setBounds(99, 26, 102, 34);
+		frame.getContentPane().add(lbl_Score);
+		
+		JLabel lbl_HighScore = new JLabel("Your Highscore: " + DBConnection.getHighscore(account, 2));
+		lbl_HighScore.setForeground(Color.WHITE);
+		lbl_HighScore.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_HighScore.setBounds(250, 26, 199, 34);
+		frame.getContentPane().add(lbl_HighScore);
+		
+		JLabel lbl_HighestScore = new JLabel("Highest Score: " + DBConnection.getHighestScore(2));
+		lbl_HighestScore.setForeground(Color.WHITE);
+		lbl_HighestScore.setFont(new Font("Arial Black", Font.PLAIN, 12));
+		lbl_HighestScore.setBounds(250, 41, 199, 34);
+		frame.getContentPane().add(lbl_HighestScore);
 	}
 }
