@@ -1,9 +1,5 @@
 package Model;
 
-import java.util.HashMap;
-
-import javax.swing.JOptionPane;
-
 public class Account {
 
 	private String accountName;

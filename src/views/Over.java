@@ -1,9 +1,7 @@
 package views;
-import java.awt.EventQueue;
-import java.awt.Image;
 
+import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;

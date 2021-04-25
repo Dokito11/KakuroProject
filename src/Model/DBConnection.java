@@ -26,7 +26,6 @@ public class DBConnection {
 		
 		if(res.next())
 		{
-			System.out.println(res.getString("ID") + " - " + res.getString("Account_Name") + " : " + res.getString("Password")); // DELETE ME
 			return true;
 		}
 		return false;
@@ -143,9 +142,7 @@ public class DBConnection {
 			Statement state = con.createStatement();
 			ResultSet res = state.executeQuery("SELECT name FROM sqlite_master WHERE type = 'table' and name = 'Accounts'");
 			if (!res.next())
-			{
-				System.out.println("Building the Account Table");
-				
+			{				
 				Statement state2 = con.createStatement();
 				state2.execute("CREATE TABLE Accounts(ID INTEGER PRIMARY KEY AUTOINCREMENT,"
 						+ "Account_Name nvarchar(25), Password nvarchar(25));");
@@ -153,7 +150,6 @@ public class DBConnection {
 				Statement state3 = con.createStatement();
 				state3.execute("CREATE TABLE Highscores(ID INTEGER PRIMARY KEY AUTOINCREMENT, Account_ID integer, Level_ID integer, Highscore integer,"
 						+ "foreign key(Account_ID) references Accounts(ID));");
-				
 			}
 		}
 		

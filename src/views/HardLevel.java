@@ -1,7 +1,5 @@
 package views;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -10,7 +8,7 @@ import javax.swing.JTextField;
 import Model.Account;
 import Model.DBConnection;
 import Model.Game;
-
+import Model.Validate;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -47,38 +45,12 @@ public class HardLevel {
 	private JLabel lbl_Score;
 
 	private Integer score = 800;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HardLevel window = new HardLevel(new Account("Test", "Test"));
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
+	
 	public HardLevel(Account account) throws ClassNotFoundException, SQLException {
 		initialize(account);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 */
-	private void initialize(Account account) throws ClassNotFoundException, SQLException {
-		
+	void initialize(Account account) throws ClassNotFoundException, SQLException {
 		Timer timer = new Timer();
 		TimerTask task = new TimerTask() {
 
@@ -103,7 +75,7 @@ public class HardLevel {
 				{"20","12","10","24","11","7"},
 				{"23","10","7","19","11","10"},
 				{"23","20","7","20","18","12"},
-				{"19","12","10","23","11","7"},
+				{"19","12","10","23","11","7"}
 		};
 		
 		int[][] levelSolutions = {
@@ -115,7 +87,7 @@ public class HardLevel {
 				{9,8,7,7,3,1,4,1,2},
 				{9,6,4,8,1,2,6,3,1},
 				{9,7,4,8,9,1,6,4,2},
-				{8,9,6,7,1,3,4,2,1},
+				{8,9,6,7,1,3,4,2,1}
 		};
 		
 		Random rand = new Random();
@@ -195,43 +167,37 @@ public class HardLevel {
 				}
 				else
 				{
-				int[] arr =  {Integer.parseInt( textField.getText()),Integer.parseInt( textField_1.getText()),Integer.parseInt( textField_2.getText()),
+				int[] arr =  {Integer.parseInt( textField.getText()),
 						Integer.parseInt( textField_3.getText()),
+						Integer.parseInt( textField_6.getText()),
+						Integer.parseInt( textField_1.getText()),
 						Integer.parseInt( textField_4.getText()),
-
-						Integer.parseInt( textField_5.getText())
-						,Integer.parseInt( textField_6.getText()),
 						Integer.parseInt( textField_7.getText()),
-						Integer.parseInt( textField_8.getText()),
-					
-				};	
+						Integer.parseInt( textField_2.getText()),
+						Integer.parseInt( textField_5.getText()),
+						Integer.parseInt( textField_8.getText())
+					};	
 				
 				int[] result = levelSolutions[int_rand];
-				for(int i = 0 ; i<arr.length ; i++)
+				if (Validate.isLevelFinished(arr, result))
 				{
-					if(arr[i] != result[i])
-					{
-						Over o = new Over(account, "hard");
-						o.frame.setVisible(true);
-						frame.setVisible(false);
-						break;
-		
+					Winnner w = new Winnner(account);
+					try {
+						DBConnection.setHighscore(account, 2, score);
+					} catch (ClassNotFoundException e1) {
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
 					}
-					else if (i == arr.length - 1 && arr[i] == result[i]) {
-						Winnner w = new Winnner(account);
-						try {
-							DBConnection.setHighscore(account, 2, score);
-						} catch (ClassNotFoundException e1) {
-							e1.printStackTrace();
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
-						w.frame.setVisible(true);
-						frame.setVisible(false);
-						break;
-					}
-					
-				}}
+					w.frame.setVisible(true);
+				}
+				else 
+				{
+					Over o = new Over(account, "hard");
+					o.frame.setVisible(true);
+				}
+				frame.setVisible(false);
+				}
 			}
 		});
 		btnDone.setBounds(214, 262, 109, 35);
