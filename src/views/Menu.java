@@ -1,5 +1,4 @@
 package views;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -18,23 +17,7 @@ public class Menu {
 	private Account account;
 	
 	public JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu window = new Menu(new Account("Test", "Test"));
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the application.
 	 */

@@ -44,7 +44,7 @@ public class HardLevel {
 	private JLabel lbl_Title_1_1_1_2;
 	private JLabel lbl_Score;
 
-	private Integer score = 800;
+	private int score = 800;
 	
 	public HardLevel(Account account) throws ClassNotFoundException, SQLException {
 		initialize(account);

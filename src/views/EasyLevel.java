@@ -32,7 +32,7 @@ public class EasyLevel {
 	private JTextField textField_3;
 	private JLabel lbl_Score;
 	
-	private Integer score = 600;
+	private int score = 600;
 
 	public EasyLevel(Account account) throws ClassNotFoundException, SQLException{
 		initialize(account);
