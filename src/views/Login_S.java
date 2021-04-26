@@ -17,6 +17,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
+import java.awt.Font;
+import java.awt.Color;
 
 public class Login_S {
 
@@ -47,32 +49,52 @@ public class Login_S {
 	private void initialize() throws ClassNotFoundException, SQLException {
 		
 		frame = new JFrame();
-		frame.setBounds(200, 200, 500, 300);
+		frame.getContentPane().setForeground(Color.BLACK);
+		frame.getContentPane().setBackground(Color.BLACK);
+		frame.setBounds(200, 200, 498, 402);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Login Systems");
-		lblNewLabel.setBounds(211, 11, 77, 14);
+		JLabel lblNewLabel = new JLabel("Login / Create Account");
+		lblNewLabel.setBackground(Color.BLACK);
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblNewLabel.setBounds(139, 33, 197, 14);
 		frame.getContentPane().add(lblNewLabel);
 		
 		JLabel lblUsername = new JLabel("Username");
-		lblUsername.setBounds(28, 77, 62, 14);
+		lblUsername.setBackground(Color.BLACK);
+		lblUsername.setForeground(Color.WHITE);
+		lblUsername.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblUsername.setBounds(79, 130, 88, 14);
 		frame.getContentPane().add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Password");
-		lblPassword.setBounds(28, 157, 46, 14);
+		lblPassword.setBackground(Color.BLACK);
+		lblPassword.setForeground(Color.WHITE);
+		lblPassword.setFont(new Font("Verdana", Font.BOLD, 14));
+		lblPassword.setBounds(79, 210, 88, 14);
 		frame.getContentPane().add(lblPassword);
 		
 		txtUsername = new JTextField();
-		txtUsername.setBounds(164, 74, 153, 20);
+		txtUsername.setBackground(Color.WHITE);
+		txtUsername.setForeground(Color.BLACK);
+		txtUsername.setFont(new Font("Verdana", Font.BOLD, 14));
+		txtUsername.setBounds(215, 127, 153, 31);
 		frame.getContentPane().add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(164, 154, 153, 20);
+		txtPassword.setBackground(Color.WHITE);
+		txtPassword.setForeground(Color.BLACK);
+		txtPassword.setFont(new Font("Verdana", Font.BOLD, 14));
+		txtPassword.setBounds(215, 196, 153, 31);
 		frame.getContentPane().add(txtPassword);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.setBackground(Color.BLACK);
+		btnLogin.setForeground(Color.WHITE);
+		btnLogin.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -102,10 +124,13 @@ public class Login_S {
 				}
 			}
 		});
-		btnLogin.setBounds(32, 213, 89, 23);
+		btnLogin.setBounds(32, 294, 104, 37);
 		frame.getContentPane().add(btnLogin);
 		
 		JButton btnReset = new JButton("Create");
+		btnReset.setBackground(Color.BLACK);
+		btnReset.setForeground(Color.WHITE);
+		btnReset.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnReset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Account acc = new Account(txtUsername.getText(), txtPassword.getText());				
@@ -113,6 +138,9 @@ public class Login_S {
 				try {
 					if (DBConnection.createAccount(acc)){
 						JOptionPane.showMessageDialog(null, "Account Created Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+						Menu m = new Menu(acc);
+						frame.dispose();
+						m.frame.setVisible(true);
 					}
 					else
 					{
@@ -132,10 +160,13 @@ public class Login_S {
 				}
 			}
 		});
-		btnReset.setBounds(168, 213, 89, 23);
+		btnReset.setBounds(168, 294, 104, 37);
 		frame.getContentPane().add(btnReset);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.setBackground(Color.BLACK);
+		btnExit.setForeground(Color.WHITE);
+		btnExit.setFont(new Font("Verdana", Font.BOLD, 14));
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -146,7 +177,7 @@ public class Login_S {
 				}
 			}
 		});
-		btnExit.setBounds(324, 213, 89, 23);
+		btnExit.setBounds(309, 294, 104, 37);
 		frame.getContentPane().add(btnExit);
 		
 		JSeparator separator = new JSeparator();
@@ -154,11 +185,15 @@ public class Login_S {
 		frame.getContentPane().add(separator);
 		
 		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(42, 46, 371, 2);
+		separator_1.setBackground(Color.BLACK);
+		separator_1.setForeground(Color.WHITE);
+		separator_1.setBounds(42, 87, 371, 2);
 		frame.getContentPane().add(separator_1);
 		
 		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(33, 200, 371, 2);
+		separator_2.setForeground(Color.WHITE);
+		separator_2.setBackground(Color.BLACK);
+		separator_2.setBounds(28, 258, 371, 2);
 		frame.getContentPane().add(separator_2);
 	}
 }
