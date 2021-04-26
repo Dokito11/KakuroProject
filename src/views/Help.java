@@ -22,6 +22,22 @@ public class Help {
 	JFrame frame;
 
 	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Help window = new Help(new Account("Test", "Test"));
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
 	 * Create the application.
 	 */
 	public Help(Account account) {
@@ -95,11 +111,27 @@ public class Help {
 		btnNewButton.setForeground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Menu m = new Menu(account);
 				frame.dispose();
+				m.frame.setVisible(true);
+				
 				
 			}
 		});
-		btnNewButton.setBounds(485, 415, 170, 36);
+		btnNewButton.setBounds(276, 415, 170, 36);
 		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnReturnToThe = new JButton("Return To The Game");
+		btnReturnToThe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+			
+			
+		});
+		btnReturnToThe.setForeground(Color.WHITE);
+		btnReturnToThe.setBackground(Color.BLACK);
+		btnReturnToThe.setBounds(479, 415, 170, 36);
+		frame.getContentPane().add(btnReturnToThe);
 	}
 }
