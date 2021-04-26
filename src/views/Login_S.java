@@ -138,6 +138,9 @@ public class Login_S {
 				try {
 					if (DBConnection.createAccount(acc)){
 						JOptionPane.showMessageDialog(null, "Account Created Successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
+						Menu m = new Menu(acc);
+						frame.dispose();
+						m.frame.setVisible(true);
 					}
 					else
 					{
